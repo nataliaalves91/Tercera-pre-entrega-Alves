@@ -1,0 +1,26 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+
+<!-- Masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h2 class="mb-5">Los mejores lugares para degustar: </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+<p> </p>
+
+<p> Encuentra una larga lista de los lugares más recomendados por nuestro público, ¡y verificado por nuestros especialistas!</p>
+
+<a href="{% url 'GastronomiaFormulario' %}"> Añadir local </a>
+
+{%endblock ContenidoVariable %}

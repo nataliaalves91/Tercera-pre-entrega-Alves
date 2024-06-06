@@ -1,0 +1,42 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h2 class="mb-5">En nuestra sección dedicada al teatro:</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <p></p>
+    <h4> Listado de todas las obras teatrales de nuestras salas:</h4>
+    
+            <p></p>
+            <ul>
+
+                {% for obra in lista_obras %} 
+
+                <li> {{obra.nombre}} - {{obra.genero}}</li>
+
+                {% endfor %}
+
+
+            </ul>
+
+    <h4> Y también puedes...</h4>
+
+            <a href="{% url 'BusquedaTeatro' %}"> Consultar </a>
+            <p></p>
+            <a href="{% url 'TeatroFormulario' %}"> Añadir obra</a>
+    
+    
+
+{%endblock ContenidoVariable %}

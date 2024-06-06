@@ -1,0 +1,31 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h2 class="mb-5"> En nuestra sección de danza...</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<p> </p>
+<p> </p>
+
+<p><strong>¡Déjate llevar al ritmo que toque!</strong></p>
+
+<p> Aquí podrás añadir las nuevas funciones disponibles en las salas:</p>
+<p> </p>
+<p> </p>
+
+<a href="{% url 'DanzaFormulario' %}"> Añadir obra</a>
+
+{%endblock ContenidoVariable %}
