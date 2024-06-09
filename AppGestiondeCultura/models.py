@@ -7,6 +7,10 @@ class Teatro (models.Model):
     nombre = models.CharField (max_length=35)
     genero = models.CharField (max_length=20)
     edad = models.IntegerField ()
+    fecha_estreno = models.DateField(null=True)
+    autor = models.CharField (max_length=35)
+    pais_estreno = models.CharField (max_length=35)
+    sinopsis = models.CharField (max_length=150)
 
     def __str__ (self):
         return f'{self.nombre}'

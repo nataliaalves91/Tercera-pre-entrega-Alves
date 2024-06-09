@@ -1,0 +1,53 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h2 class="mb-5">Grabaciones de ayer y hoy:</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <p></p>
+    <h4>Proyecciones clásicas e independientes</h4>
+
+    <p></p>
+
+    <p>Entendemos el complejo arte de la transmisión audiovisual como un don recibido por unos pocos, y altamente disfrutable por el resto.</p>
+    <p> Defendemos que las filmaciones no sólo reflejan sueños, esperanzas o miedos. Representan nuestro ayer. Nuestro mañana.</p>
+    <p>Pero, y principalmente, nuestro <strong> hoy </strong>.</p>
+    <p>En este espacio encontrarás el detalle de las proyecciones que hemos tenido el placer de tener en nuestras salas.</p>
+
+    <p></p>
+    
+    <h5> Listado de todas las proyecciones de nuestras salas:</h5>
+    
+            <p></p>
+            <ul>
+
+                {% for lista_cine in listado_cine %} 
+
+                    <li> <strong> {{lista_cine.nombre}} </strong>, apta a partir de {{lista_cine.edad_minima}} años.  <div> Género: {{lista_cine.genero}} </div></li>
+
+                {% endfor %}
+
+
+            </ul>
+
+    <h5> Y también puedes...</h5>
+
+        <p></p>
+        <a href="{% url 'CineFormulario' %}"> Añadir obra</a>
+
+    
+    
+
+{%endblock ContenidoVariable %}

@@ -3,9 +3,9 @@ from .models import Teatro, Cine, Danza, Gastronomia
 from django.http import HttpResponse
 from .forms import TeatroFormulario, CineFormulario, DanzaFormulario, GastronomiaFormulario
 
-def obras_teatro (req, nombre, genero, edad):
+def obras_teatro (req, nombre, genero, edad, fecha_estreno, autor):
 
-    nueva_obra = Teatro(nombre=nombre, genero=genero, edad=edad)
+    nueva_obra = Teatro(nombre=nombre, genero=genero, edad=edad, fecha_estreno=fecha_estreno, autor=autor)
     nueva_obra.save()
     return HttpResponse (f'<p>Nueva obra {nueva_obra.nombre}, apta a partir de {nueva_obra.edad} años, creada!</p>')
 
@@ -177,3 +177,20 @@ def gastronomia_formulario (req):
         miFormulario= GastronomiaFormulario()
    
         return render(req, "gastronomia_formulario.html", {"GastronomiaFormulario": miFormulario})
+    
+
+
+# creamos listados
+
+def lista_danza (req):
+
+    listado_danza = Danza.objects.all()
+
+    return render (req, "lista_danza.html", {"listado_danza" : listado_danza})
+
+
+def lista_cine (req):
+
+    listado_cine = Cine.objects.all()
+
+    return render (req, "lista_cine.html", {"listado_cine" : listado_cine})
