@@ -1,0 +1,48 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h2 class="mb-5">Música de ayer y hoy:</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <p></p>
+    <h4>Canciones</h4>
+
+    <p></p>
+
+    <p></p>
+    
+    <h5> Listado de todas las formaciones musicales de nuestras salas:</h5>
+    
+            <p></p>
+            <ul>
+
+                {% for cada_grupo in musica %} 
+
+                    <li> 
+                            {{musica}}
+
+                    </li>
+
+                {% endfor %}
+
+
+            </ul>
+
+
+
+    
+    
+
+{%endblock ContenidoVariable %}

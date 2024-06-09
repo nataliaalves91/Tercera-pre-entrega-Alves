@@ -1,6 +1,5 @@
 from django.urls import path
-from AppGestiondeCultura.views import obras_teatro, lista_obras, inicio, funcion_danza, proyecciones, degustaciones, teatro_formulario,busqueda_teatro, buscar_teatro, cine_formulario, danza_formulario, gastronomia_formulario, lista_danza, lista_cine
-
+from AppGestiondeCultura.views import *
 
 
 urlpatterns = [
@@ -24,7 +23,15 @@ urlpatterns = [
 
     path('lista-danza/', lista_danza, name='ListaDanza'),
     
-    path('lista-cine/', lista_cine, name='ListaCine')
+    path('lista-cine/', lista_cine, name='ListaCine'),
+
+    path('lista-musica/', MusicaList.as_view(), name='ListaMusica'),
+    path('detalle-musica/<pk>', MusicaDetail.as_view(), name='DetalleMusica'),
+    path('crea-musica/', MusicaCreate.as_view(), name='CreaMusica'),
+    path('actualiza-musica/<pk>', MusicaUpdate.as_view(), name='ActualizaMusica'),
+    path('elimina-musica/<pk>', MusicaDelete.as_view, name='EliminaMusica'),
+
+
 
     
 ]

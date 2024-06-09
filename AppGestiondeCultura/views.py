@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from .models import Teatro, Cine, Danza, Gastronomia
+from .models import Teatro, Cine, Danza, Gastronomia, Musica
 from django.http import HttpResponse
 from .forms import TeatroFormulario, CineFormulario, DanzaFormulario, GastronomiaFormulario
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
+
+
 
 def obras_teatro (req, nombre, genero, edad, fecha_estreno, autor):
 
@@ -194,3 +199,44 @@ def lista_cine (req):
     listado_cine = Cine.objects.all()
 
     return render (req, "lista_cine.html", {"listado_cine" : listado_cine})
+
+
+
+#VBC
+
+class MusicaList(ListView):
+
+    model = Musica
+    template_name = 'musica_list.html'
+    context_object_name = 'musica'
+
+
+
+class MusicaDetail(DetailView):
+
+    model = Musica  
+    template_name = 'musica_detail.html'
+    context_object_name = 'detalle_musica'
+
+class MusicaCreate(CreateView):
+
+    model = Musica
+    template_name = 'musica_create.html'
+    fields = ["nombre_grupo", "genero", "edad_minima", "pais_origen", "descripcion"]
+    success_url = "/AppGestiondeCultura/"
+
+
+class MusicaUpdate (UpdateView):
+
+    model = Musica
+    template_name = 'musica_update.html'
+    fields = ('__all__')
+    success_url = "/AppGestiondeCultura/"
+    context_object_name = 'detalle_musica'
+
+
+class MusicaDelete(DeleteView):
+
+    model = Musica
+    template_name = 'musica_delete.html'
+    success_url = "/AppGestiondeCultura/"
