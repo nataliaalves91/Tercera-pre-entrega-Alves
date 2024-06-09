@@ -5,7 +5,7 @@ from .forms import TeatroFormulario, CineFormulario, DanzaFormulario, Gastronomi
 
 def obras_teatro (req, nombre, genero, edad, fecha_estreno, autor):
 
-    nueva_obra = Teatro(nombre=nombre, genero=genero, edad=edad, fecha_estreno=fecha_estreno, autor=autor)
+    nueva_obra = Teatro(nombre=nombre, genero=genero, edad=edad)
     nueva_obra.save()
     return HttpResponse (f'<p>Nueva obra {nueva_obra.nombre}, apta a partir de {nueva_obra.edad} años, creada!</p>')
 
