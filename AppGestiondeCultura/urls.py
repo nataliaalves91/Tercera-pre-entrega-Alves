@@ -25,11 +25,11 @@ urlpatterns = [
     
     path('lista-cine/', lista_cine, name='ListaCine'),
 
-    path('lista-musica/', MusicaList.as_view(), name='ListaMusica'),
-    path('detalle-musica/<pk>', MusicaDetail.as_view(), name='DetalleMusica'),
-    path('crea-musica/', MusicaCreate.as_view(), name='CreaMusica'),
-    path('actualiza-musica/<pk>', MusicaUpdate.as_view(), name='ActualizaMusica'),
-    path('elimina-musica/<pk>', MusicaDelete.as_view, name='EliminaMusica'),
+    path('lista-gastronomia/', GastronomiaList.as_view(), name='ListaGastronomia'),
+    path('detalle-gastronomia/<pk>', GastronomiaDetail.as_view(), name='DetalleGastronomia'),
+    path('crea-gastronomia/', GastronomiaCreate.as_view(), name='CreaGastronomia'),
+    path('actualiza-gastronomia/<pk>', GastronomiaUpdate.as_view(), name='ActualizaGastronomia'),
+    path('elimina-gastronomia/<pk>', GastronomiaDelete.as_view, name='EliminaGastronomia'),
 
 
 

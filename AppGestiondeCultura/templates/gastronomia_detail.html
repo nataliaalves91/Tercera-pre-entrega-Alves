@@ -1,0 +1,26 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h2 class="mb-5">Vista en detalle:</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header> 
+
+<h4> Usted está interesado en saber más de... </h4>
+
+    <p> Restaurante <strong>{{local_comida.nombre}} </strong></p>
+    
+    <p>Dicho local se encuentra en la ciudad de {{local_comida.localidad}}</p>
+
+
+{%endblock ContenidoVariable %}

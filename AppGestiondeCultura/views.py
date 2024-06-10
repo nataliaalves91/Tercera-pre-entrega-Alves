@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Teatro, Cine, Danza, Gastronomia, Musica
+from .models import Teatro, Cine, Danza, Gastronomia
 from django.http import HttpResponse
 from .forms import TeatroFormulario, CineFormulario, DanzaFormulario, GastronomiaFormulario
 from django.views.generic import ListView
@@ -204,39 +204,39 @@ def lista_cine (req):
 
 #VBC
 
-class MusicaList(ListView):
+class GastronomiaList(ListView):
 
-    model = Musica
-    template_name = 'musica_list.html'
-    context_object_name = 'musica'
+    model = Gastronomia
+    template_name = 'gastronomia_list.html'
+    context_object_name = 'locales_comida'
 
 
 
-class MusicaDetail(DetailView):
+class GastronomiaDetail(DetailView):
 
-    model = Musica  
-    template_name = 'musica_detail.html'
-    context_object_name = 'detalle_musica'
+    model = Gastronomia  
+    template_name = 'gastronomia_detail.html'
+    context_object_name = 'local_comida'
 
-class MusicaCreate(CreateView):
+class GastronomiaCreate(CreateView):
 
-    model = Musica
-    template_name = 'musica_create.html'
-    fields = ["nombre_grupo", "genero", "edad_minima", "pais_origen", "descripcion"]
+    model = Gastronomia
+    template_name = 'gastronomia_create.html'
+    fields = ["nombre", "localidad", "testeado"]
     success_url = "/AppGestiondeCultura/"
 
 
-class MusicaUpdate (UpdateView):
+class GastronomiaUpdate (UpdateView):
 
-    model = Musica
-    template_name = 'musica_update.html'
+    model = Gastronomia
+    template_name = 'gastronomia_update.html'
     fields = ('__all__')
     success_url = "/AppGestiondeCultura/"
-    context_object_name = 'detalle_musica'
+    context_object_name = 'detalle_gastronomia'
 
 
-class MusicaDelete(DeleteView):
+class GastronomiaDelete(DeleteView):
 
-    model = Musica
-    template_name = 'musica_delete.html'
+    model = Gastronomia
+    template_name = 'gastronomia_delete.html'
     success_url = "/AppGestiondeCultura/"

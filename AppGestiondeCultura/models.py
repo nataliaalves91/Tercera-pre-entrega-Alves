@@ -42,13 +42,13 @@ class Gastronomia (models.Model):
         return f'Restaurante: {self.nombre} - Localidad: {self.localidad}'
     
 
-class Musica (models.Model):
+# class Musica (models.Model):
 
-    nombre_grupo = models.CharField (max_length=35)
-    genero= models.CharField (max_length=50)
-    edad_minima = models.IntegerField ()
-    pais_origen = models.CharField(max_length=35)
-    descripcion = models.CharField (max_length=150)
+#     nombre_grupo = models.CharField (max_length=35)
+#     genero= models.CharField (max_length=50)
+#     edad_minima = models.IntegerField ()
+#     pais_origen = models.CharField(max_length=35)
+#     descripcion = models.CharField (max_length=150)
 
-    def __str__ (self):
-        return f'La formación musical {self.nombre_grupo}, de {self.pais_origen}'
+#     def __str__ (self):
+#         return f'La formación musical {self.nombre_grupo}, de {self.pais_origen}'
