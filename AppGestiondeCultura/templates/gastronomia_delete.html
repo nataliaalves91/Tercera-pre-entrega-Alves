@@ -1,0 +1,32 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+
+            
+        <div class="overlay">
+            <div id="pageintro" class="hoc clear"> 
+            <!-- ################################################################################################ -->
+            <article>
+                <h5 class="heading">¿Alguna función se canceló?</h5>
+                <p></p>
+            </article>
+            <!-- ################################################################################################ -->
+            </div>
+        </div>
+
+
+    <form action="{% url 'EliminaGastronomia' delete_gastronomia.id %}" method="post">{%csrf_token%}
+
+        <p>¿Está seguro de que desea eliminarlo? Presione "Confirmar"</p>
+
+        <button type="submit"> Confirmar </button>
+        {% comment %} <button><a href="{ % url 'Inicial' % }"> Cancelar </a></button> {% endcomment %}
+
+
+    </form>
+
+
+
+    
+{%endblock ContenidoVariable %}

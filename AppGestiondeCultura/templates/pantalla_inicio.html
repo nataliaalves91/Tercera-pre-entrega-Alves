@@ -1,20 +1,20 @@
 {% extends 'padre.html' %}
 
-{%block ContenidoVariable %}
-
-<!-- Masthead-->
-<header class="masthead">
-    <div class="container position-relative">
-        <div class="row justify-content-center">
-            <div class="col-xl-6">
-                <div class="text-center text-black">
-                    <!-- Page heading-->
-                    <h1 class="mb-5">¡Bienvenidos a nuestra página web cultural!</h1>
-                </div>
-            </div>
-        </div>
+{% block ContenidoVariable %}
+        
+<div class="overlay">
+    <div id="pageintro" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <article>
+        <h3 class="heading">¡Bienvenidos a nuestra página web cultural!</h3>
+        <p>Porque sabemos que la cultura va mucho más allá de los estudios.</p>
+        <footer><a class="btn" href="#">¡Que lo disfrutes!</a></footer>
+    </article>
+    <!-- ################################################################################################ -->
     </div>
-</header>
+</div>
+
+
 
 <p> </p>
 <p> Por el momento, esta será la plataforma en que la que los funcionarios carguen información.</p>
@@ -57,4 +57,4 @@
             </div>
         </section>
         
-{%endblock ContenidoVariable %}
+{% endblock ContenidoVariable %}

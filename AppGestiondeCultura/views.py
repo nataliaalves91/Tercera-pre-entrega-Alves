@@ -201,6 +201,20 @@ def lista_cine (req):
     return render (req, "lista_cine.html", {"listado_cine" : listado_cine})
 
 
+#nueva
+
+# def eliminar_local (req, id):
+
+#     if req.method == 'POST':
+
+#         local_restaurante = Gastronomia.objects.get(id=id)
+#         local_restaurante.delete()
+
+#         locales_restaurantes = Gastronomia.objects.all()
+    
+#     return render (req, "gastronomia_list.html", {"locales_gastro": locales_restaurantes})
+
+
 
 #VBC
 
@@ -223,7 +237,7 @@ class GastronomiaCreate(CreateView):
     model = Gastronomia
     template_name = 'gastronomia_create.html'
     fields = ["nombre", "localidad", "testeado"]
-    success_url = "/AppGestiondeCultura/"
+    success_url = 'gestion_cultural/'
 
 
 class GastronomiaUpdate (UpdateView):
@@ -231,7 +245,7 @@ class GastronomiaUpdate (UpdateView):
     model = Gastronomia
     template_name = 'gastronomia_update.html'
     fields = ('__all__')
-    success_url = "/AppGestiondeCultura/"
+    success_url = 'Inicial'
     context_object_name = 'detalle_gastronomia'
 
 
@@ -239,4 +253,5 @@ class GastronomiaDelete(DeleteView):
 
     model = Gastronomia
     template_name = 'gastronomia_delete.html'
-    success_url = "/AppGestiondeCultura/"
+    success_url = 'gestion_cultural/'
+    context_object_name = 'delete_gastronomia'

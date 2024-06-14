@@ -3,24 +3,32 @@
 {%block ContenidoVariable %}
 
 
-<!-- Masthead-->
-        <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h2 class="mb-5">Los mejores lugares para degustar: </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        
+    <div class="overlay">
+        <div id="pageintro" class="hoc clear"> 
+        <!-- ################################################################################################ -->
+        <article>
+            <h3 class="heading">Para deleitarse...:</h3>
+            <p></p>
+        </article>
+        <!-- ################################################################################################ -->
+        </div>
+    </div>
 
+<h1> Algunos de los muchos pequeños grandes lugares para disfrutar </h1>
 <p> </p>
 
 <p> Encuentra una larga lista de los lugares más recomendados por nuestro público, ¡y verificado por nuestros especialistas!</p>
 
-<a href="{% url 'GastronomiaFormulario' %}"> Añadir local </a>
+Haz click en el siguiente botón para acceder al detalle de todos los locales que recomendamos:
+<p></p>
+
+                    <button>
+                        <a href="{% url 'ListaGastronomia' %}"> Listado </a>
+                    </button>
+<p></p>
+                    Y también puedes...:
+<p></p>
+                    <a href="{% url 'GastronomiaFormulario' %}"> Añadir local </a>
 
 {%endblock ContenidoVariable %}

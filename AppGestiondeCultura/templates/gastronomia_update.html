@@ -1,0 +1,29 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+
+            
+        <div class="overlay">
+            <div id="pageintro" class="hoc clear"> 
+            <!-- ################################################################################################ -->
+            <article>
+                <h5 class="heading">Edita los datos:</h5>
+                <p></p>
+            </article>
+            <!-- ################################################################################################ -->
+            </div>
+        </div>
+
+    <form action="{%url 'ActualizaGastronomia' detalle_gastronomia.id %}" method="post">{% csrf_token %}
+
+        {{form.as_p}}
+
+        <button type="submit"> Actualizar </button> 
+
+    </form>
+
+
+
+    
+{%endblock ContenidoVariable %}
