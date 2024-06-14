@@ -7,7 +7,7 @@
     <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article>
-        <h3 class="heading">¡Añadido exitosamente a la base de datos!</h3>
+        <h3 class="heading">Inicia sesión:</h3>
         <p></p>
     </article>
     <!-- ################################################################################################ -->
@@ -15,6 +15,18 @@
 </div>
 
 
+<form action="{% url 'Registrar' %}" method="post">{% csrf_token %}
+
+    <P></P>
+    <P></P>
+
+    {{miFormulario.as_p}}
+
+    <button type="submit"> Registrar </button>
+
+</form>
+
+
+
 
 {%endblock ContenidoVariable %}
-

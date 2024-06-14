@@ -30,6 +30,11 @@ urlpatterns = [
     path('crea-gastronomia/', GastronomiaCreate.as_view(), name='CreaGastronomia'),
     path('actualiza-gastronomia/<pk>', GastronomiaUpdate.as_view(), name='ActualizaGastronomia'),
     path('elimina-gastronomia/<pk>', GastronomiaDelete.as_view(), name='EliminaGastronomia'),
+    path('login', login_view, name='Login'),
+    path('registrarse', register, name='Registrar'),
+
+
+    
 
     # path('eliminar-local/<int:id>', eliminar_local, name='EliminarGastronomia'),
     

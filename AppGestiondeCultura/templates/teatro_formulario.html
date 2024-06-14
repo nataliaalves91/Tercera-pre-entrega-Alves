@@ -1,20 +1,17 @@
 {% extends 'padre.html' %}
 
 {%block ContenidoVariable %}
+<div class="overlay">
+    <div id="pageintro" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <article>
+        <h3 class="heading">¡Añade una nueva obra!</h3>
+        <p></p>
+    </article>
+    <!-- ################################################################################################ -->
+    </div>
+</div>
 
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container position-relative">
-            <div class="row justify-content-center">
-                <div class="col-xl-6">
-                    <div class="text-center text-white">
-                        <!-- Page heading-->
-                        <h2 class="mb-5"> ¡Añade una nueva obra! </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <form action="{% url 'TeatroFormulario' %}" method="post">{% csrf_token %}
 

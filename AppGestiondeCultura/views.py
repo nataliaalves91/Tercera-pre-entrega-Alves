@@ -5,6 +5,8 @@ from .forms import TeatroFormulario, CineFormulario, DanzaFormulario, Gastronomi
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 
@@ -237,7 +239,7 @@ class GastronomiaCreate(CreateView):
     model = Gastronomia
     template_name = 'gastronomia_create.html'
     fields = ["nombre", "localidad", "testeado"]
-    success_url = 'gestion_cultural/'
+    success_url = "/gestion_cultural/"
 
 
 class GastronomiaUpdate (UpdateView):
@@ -245,7 +247,7 @@ class GastronomiaUpdate (UpdateView):
     model = Gastronomia
     template_name = 'gastronomia_update.html'
     fields = ('__all__')
-    success_url = 'Inicial'
+    success_url = "/gestion_cultural/lista-gastronomia/"
     context_object_name = 'detalle_gastronomia'
 
 
@@ -253,5 +255,67 @@ class GastronomiaDelete(DeleteView):
 
     model = Gastronomia
     template_name = 'gastronomia_delete.html'
-    success_url = 'gestion_cultural/'
+    success_url = "/gestion_cultural/"
     context_object_name = 'delete_gastronomia'
+
+
+def login_view(req):
+
+
+    if req.method == 'POST':
+
+        miFormulario= AuthenticationForm(req, data=req.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+            
+            usuario = data["username"]
+            contrasenia = data["password"]
+
+            user = authenticate(username=usuario, password=contrasenia)
+
+            if user:
+                login(req, user)
+
+                return render(req, "pantalla_inicio.html", {"message": f"¡Bienvenido, {usuario}!"})
+        
+            else:
+                return render(req, "pantalla_inicio.html", {"message": "Datos inválidos"})
+
+    
+    else:
+
+        miFormulario= AuthenticationForm()
+   
+        return render(req, "login.html", {"miFormulario": miFormulario})
+    
+
+# función de registro para que reciba req (get o post)
+
+def register(req):
+
+
+    if req.method == 'POST':
+
+        miFormulario= UserCreationForm(req.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+            
+            usuario = data["username"]
+            miFormulario.save()
+
+            
+            return render(req, "pantalla_inicio.html", {"message": f" Usuario {usuario} creado con éxito, ¡bienvenido!"})
+        
+        else:
+                return render(req, "pantalla_inicio.html", {"message": "Datos inválidos"})
+
+    
+    else:
+
+        miFormulario= UserCreationForm()
+   
+        return render(req, "registro.html", {"miFormulario": miFormulario})

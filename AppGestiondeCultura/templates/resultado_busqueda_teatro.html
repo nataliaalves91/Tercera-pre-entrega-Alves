@@ -2,19 +2,16 @@
 
 {%block ContenidoVariable %}
 
-<!-- Masthead-->
-<header class="masthead">
-    <div class="container position-relative">
-        <div class="row justify-content-center">
-            <div class="col-xl-6">
-                <div class="text-center text-white">
-                    <!-- Page heading-->
-                    <h2 class="mb-5">El resultado de tu búsqueda fue:</h2>
-                </div>
-            </div>
-        </div>
+<div class="overlay">
+    <div id="pageintro" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <article>
+        <h3 class="heading">El resultado de tu búsqueda fue:</h3>
+        <p></p>
+    </article>
+    <!-- ################################################################################################ -->
     </div>
-</header> 
+</div>
 
     <p></p>
 
@@ -39,7 +36,7 @@
 
         {% else %}
 
-            <p>¡No hubo coincidencias en la búsqueda!</p>
+            <h1>¡No hubo coincidencias en la búsqueda!</h1>
 
 
     {% endif %}
