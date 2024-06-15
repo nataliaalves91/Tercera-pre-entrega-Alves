@@ -261,7 +261,6 @@ class GastronomiaDelete(DeleteView):
 
 def login_view(req):
 
-
     if req.method == 'POST':
 
         miFormulario= AuthenticationForm(req, data=req.POST)
@@ -271,25 +270,24 @@ def login_view(req):
             data = miFormulario.cleaned_data
             
             usuario = data["username"]
-            contrasenia = data["password"]
+            password = data["password"]
 
-            user = authenticate(username=usuario, password=contrasenia)
+            user = authenticate(username=usuario, password=password)
 
             if user:
                 login(req, user)
-
-                return render(req, "pantalla_inicio.html", {"message": f"¡Bienvenido, {usuario}!"})
+                return render(req, "bienvenida.html", {"message": f"¡Bienvenido, {usuario}!"})
         
             else:
                 return render(req, "pantalla_inicio.html", {"message": "Datos inválidos"})
-
-    
+            
     else:
 
         miFormulario= AuthenticationForm()
    
         return render(req, "login.html", {"miFormulario": miFormulario})
     
+
 
 # función de registro para que reciba req (get o post)
 
@@ -308,10 +306,10 @@ def register(req):
             miFormulario.save()
 
             
-            return render(req, "pantalla_inicio.html", {"message": f" Usuario {usuario} creado con éxito, ¡bienvenido!"})
+            return render(req, "bienvenida.html", {"message": f" Usuario {usuario} creado con éxito, ¡bienvenido!"})
         
         else:
-                return render(req, "pantalla_inicio.html", {"message": "Datos inválidos"})
+            return render(req, "pantalla_inicio.html", {"message": "Datos inválidos"})
 
     
     else:

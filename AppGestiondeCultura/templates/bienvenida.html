@@ -2,31 +2,18 @@
 
 {%block ContenidoVariable %}
 
-
 <div class="overlay">
     <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article>
-        <h3 class="heading">Regístrate:</h3>
+        <h3 class="heading">¡Bienvenido!</h3>
         <p></p>
     </article>
     <!-- ################################################################################################ -->
     </div>
 </div>
 
-
-<form action="{% url 'Registrar' %}" method="post">{% csrf_token %}
-
-    <P></P>
-    <P></P>
-
-    {{miFormulario.as_p}}
-
-    <button type="submit"> Crear </button>
-
-</form>
+¡Gracias por acompañarnos, {{usuario}}! ¡Esperamos que lo disfrutes!
 
 
-
-
-{%endblock ContenidoVariable %}
+{% endblock ContenidoVariable %}

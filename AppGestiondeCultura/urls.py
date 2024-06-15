@@ -1,5 +1,6 @@
 from django.urls import path
 from AppGestiondeCultura.views import *
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
@@ -30,8 +31,10 @@ urlpatterns = [
     path('crea-gastronomia/', GastronomiaCreate.as_view(), name='CreaGastronomia'),
     path('actualiza-gastronomia/<pk>', GastronomiaUpdate.as_view(), name='ActualizaGastronomia'),
     path('elimina-gastronomia/<pk>', GastronomiaDelete.as_view(), name='EliminaGastronomia'),
-    path('login', login_view, name='Login'),
-    path('registrarse', register, name='Registrar'),
+    path('login/', login_view, name='Login'),
+    path('registrarse/', register, name='Registrar'),
+    path('logout', LogoutView.as_view(template_name="logout.html"), name='Logout'),
+  
 
 
     
