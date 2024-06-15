@@ -1,0 +1,29 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+
+            
+        <div class="overlay">
+            <div id="pageintro" class="hoc clear"> 
+            <!-- ################################################################################################ -->
+            <article>
+                <h5 class="heading">Edita los datos:</h5>
+                <p></p>
+            </article>
+            <!-- ################################################################################################ -->
+            </div>
+        </div>
+
+    <form action="{% url 'EditarPerfil' %}" method="post">{% csrf_token %}
+
+        {{miFormulario.as_p}}
+
+        <button type="submit"> Actualizar </button> 
+
+    </form>
+
+
+
+    
+{%endblock ContenidoVariable %}

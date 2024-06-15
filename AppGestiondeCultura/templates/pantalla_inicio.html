@@ -8,7 +8,10 @@
     <article>
         <h3 class="heading">¡Bienvenidos a nuestra página web cultural!</h3>
         <p>Porque sabemos que la cultura va mucho más allá de los estudios.</p>
-        <footer><a class="btn" href="#">¡Que lo disfrutes!</a></footer>
+        {% comment %} <footer><a class="btn" href="#">¡Que lo disfrutes!</a></footer> {% endcomment %}
+        {% if url %}
+            <img src="{{url}}" alt="avatar">
+        {% endif %}
     </article>
     <!-- ################################################################################################ -->
     </div>
@@ -26,6 +29,7 @@
 <p> Aquí encontrarás el detalle de todas las funciones disponibles en nuestras diferentes salas.</p>
 <p> Podrás ver tanto los próximos estrenos y eventos, así como parte de nuestra trayectoria cultural.</p>
 <p> ¡Ven a visitarnos! Y no dudes en dejarnos tus comentarios y sugerencias.</p>
+
 
 
         <!-- Icons Grid-->

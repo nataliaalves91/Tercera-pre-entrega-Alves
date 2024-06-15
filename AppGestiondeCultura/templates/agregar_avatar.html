@@ -1,0 +1,29 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+<div class="overlay">
+    <div id="pageintro" class="hoc clear"> 
+        <!-- ################################################################################################ -->
+        <article>
+            <h3 class="heading">¡Bienvenido!
+        </article>
+
+    </div>
+</div>
+
+<form
+    action="{% url 'AgregarAvatar' %}"
+    method ="post"
+    enctype="multipart/form-data">{% csrf_token %}
+
+    {{mi.Formulario}}
+
+    <button type="submit">Crear avatar</button>
+
+</form>
+
+
+{% endblock ContenidoVariable %}
+
+

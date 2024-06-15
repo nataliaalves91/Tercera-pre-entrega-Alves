@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 #se crean las diferentes clases de modelos que se utilizarán posteriormente
 
@@ -55,3 +56,9 @@ class Musica (models.Model):
 
     def __str__ (self):
         return f'La formación musical {self.nombre_grupo}, de {self.pais_origen}'
+    
+
+class Avatar(models.Model):
+
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatares', blank=True, null=True)

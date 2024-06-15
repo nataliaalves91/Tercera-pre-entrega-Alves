@@ -4,16 +4,24 @@
 
 <div class="overlay">
     <div id="pageintro" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <article>
-        <h3 class="heading">¡Bienvenido!</h3>
-        <p></p>
-    </article>
-    <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <article>
+            <h3 class="heading">¡Bienvenido!
+        </article>
+
+        {% if url %}
+            <img src="{{url}}" alt="avatar">
+        {% endif %}
     </div>
 </div>
 
-¡Gracias por acompañarnos, {{usuario}}! ¡Esperamos que lo disfrutes!
+{% if url %}
+    <img src="{{url}}" alt="avatar">
+{% endif %}
+
+¡Gracias por acompañarnos, {{user.username}}! ¡Esperamos que lo disfrutes!
+
+
 
 
 {% endblock ContenidoVariable %}

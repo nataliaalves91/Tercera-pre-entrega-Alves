@@ -1,0 +1,24 @@
+{% extends 'padre.html' %}
+
+{%block ContenidoVariable %}
+
+
+<div class="overlay">
+    <div id="pageintro" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <article>
+        <h3 class="heading">¡Ups! Algo salió mal</h3>
+        <p></p>
+    </article>
+    <!-- ################################################################################################ -->
+    </div>
+</div>
+
+
+
+Si lo deseas, vuelve a intentarlo
+
+<a href="{% url 'Inicial' %}"> Volver a Inicio</a>
+
+
+{% endblock ContenidoVariable %}

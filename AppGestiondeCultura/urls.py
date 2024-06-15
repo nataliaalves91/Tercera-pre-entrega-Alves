@@ -1,13 +1,14 @@
 from django.urls import path
-from AppGestiondeCultura.views import *
 from django.contrib.auth.views import LogoutView
+from AppGestiondeCultura.views import *
+
 
 
 urlpatterns = [
     
     path('teatro/<nombre>/<genero>/<edad>', obras_teatro),
     path('' , inicio, name='Inicial'),
-    path('lista_obras/' , lista_obras),
+    path('lista_obras/' , lista_obras, name='ListaObras'),
     path('funciones-danza' , funcion_danza, name='FuncionesBaile'),
     path('filmaciones/' , proyecciones, name='Proyecciones'),
     path('gastronomia-degustaciones/', degustaciones, name='Restaurantes'),
@@ -33,11 +34,12 @@ urlpatterns = [
     path('elimina-gastronomia/<pk>', GastronomiaDelete.as_view(), name='EliminaGastronomia'),
     path('login/', login_view, name='Login'),
     path('registrarse/', register, name='Registrar'),
-    path('logout', LogoutView.as_view(template_name="logout.html"), name='Logout'),
-  
+    path('logout/', LogoutView.as_view(template_name="logout.html"), name='logout'),
+    path('editar-perfil/', edita_perfil, name='EditarPerfil'),
+    path('agregar-avatar/', agregar_avatar, name='AgregarAvatar'),
 
 
-    
+]
 
     # path('eliminar-local/<int:id>', eliminar_local, name='EliminarGastronomia'),
     
@@ -45,4 +47,4 @@ urlpatterns = [
 
 
     
-]
+

@@ -1,12 +1,15 @@
 from django.shortcuts import render
-from .models import Teatro, Cine, Danza, Gastronomia
+from .models import Teatro, Cine, Danza, Gastronomia, Avatar
 from django.http import HttpResponse
-from .forms import TeatroFormulario, CineFormulario, DanzaFormulario, GastronomiaFormulario
+from .forms import TeatroFormulario, CineFormulario, DanzaFormulario, GastronomiaFormulario, UserEditForm, AvatarFormulario
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 
@@ -28,7 +31,11 @@ def lista_obras(req):
 
 def inicio (req):
 
-    return render(req, "pantalla_inicio.html", {})
+    try:
+        avatar= Avatar.objects.get(user=req.user.id)
+        return render(req, "pantalla_inicio.html", {"url": avatar.imagen.url})
+    except:
+        return render(req, "pantalla_inicio.html")
 
 
 def funcion_danza (req):
@@ -234,6 +241,7 @@ class GastronomiaDetail(DetailView):
     template_name = 'gastronomia_detail.html'
     context_object_name = 'local_comida'
 
+
 class GastronomiaCreate(CreateView):
 
     model = Gastronomia
@@ -242,7 +250,7 @@ class GastronomiaCreate(CreateView):
     success_url = "/gestion_cultural/"
 
 
-class GastronomiaUpdate (UpdateView):
+class GastronomiaUpdate (LoginRequiredMixin, UpdateView):
 
     model = Gastronomia
     template_name = 'gastronomia_update.html'
@@ -251,7 +259,7 @@ class GastronomiaUpdate (UpdateView):
     context_object_name = 'detalle_gastronomia'
 
 
-class GastronomiaDelete(DeleteView):
+class GastronomiaDelete(LoginRequiredMixin, DeleteView):
 
     model = Gastronomia
     template_name = 'gastronomia_delete.html'
@@ -269,17 +277,22 @@ def login_view(req):
 
             data = miFormulario.cleaned_data
             
-            usuario = data["username"]
-            password = data["password"]
+            username = data.get("username")
+            password = data.get("password")
 
-            user = authenticate(username=usuario, password=password)
+            user = authenticate(username=username, password=password)
+            
 
-            if user:
+            if user is not None:
                 login(req, user)
-                return render(req, "bienvenida.html", {"message": f"¡Bienvenido, {usuario}!"})
+                return render(req, "bienvenida.html", {"message": f"¡Bienvenido, {username}!"})
+                
         
             else:
-                return render(req, "pantalla_inicio.html", {"message": "Datos inválidos"})
+                return render(req, "pantalla_error.html", {"message": "Datos inválidos"})
+            
+        else:
+            return render(req, "pantalla_error.html", {"message": "Datos inválidos"})
             
     else:
 
@@ -287,6 +300,10 @@ def login_view(req):
    
         return render(req, "login.html", {"miFormulario": miFormulario})
     
+
+
+
+
 
 
 # función de registro para que reciba req (get o post)
@@ -302,14 +319,14 @@ def register(req):
 
             data = miFormulario.cleaned_data
             
-            usuario = data["username"]
+            user = data["username"]
             miFormulario.save()
 
             
-            return render(req, "bienvenida.html", {"message": f" Usuario {usuario} creado con éxito, ¡bienvenido!"})
+            return render(req, "bienvenida.html", {"message": f" Usuario {user} creado con éxito, ¡bienvenido!"})
         
         else:
-            return render(req, "pantalla_inicio.html", {"message": "Datos inválidos"})
+            return render(req, "pantalla_error.html", {"message": "Datos inválidos"})
 
     
     else:
@@ -317,3 +334,61 @@ def register(req):
         miFormulario= UserCreationForm()
    
         return render(req, "registro.html", {"miFormulario": miFormulario})
+    
+@login_required
+def edita_perfil(req):
+
+    usuario = req.user
+
+    if req.method == 'POST':
+
+        miFormulario= UserEditForm(req.POST, instance=req.user)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+            
+            usuario.first_name = data.get("first_name")
+            usuario.last_name = data.get("last_name")
+            usuario.email = data.get("email")
+            usuario.set_password(data["password1"])
+            usuario.save()
+            
+            return render(req, "bienvenida.html", {"message": "Usuario modificado con éxito"})
+        
+        else:
+            return render(req, "editar_perfil.html", {"miFormulario": miFormulario})
+            
+    else:
+
+        miFormulario= UserEditForm(instance=req.user)
+   
+        return render(req, "editar_perfil.html", {"miFormulario": miFormulario})
+    
+
+
+
+
+def agregar_avatar(req):
+
+    if req.method == 'POST':
+
+        miFormulario = AvatarFormulario(req.POST, req.FILES)
+
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
+
+            avatar = Avatar(user=req.user, imagen=data["imagen"])
+            avatar.save()
+
+            return render (req, "pantalla_inicio.html", {"message" : "Avatar creado correctamente"})
+
+        else:
+            return render (req, "pantalla_inicio.html", {"message" : "Datos inválidos"})
+    
+    else:
+
+        miFormulario= AvatarFormulario()
+
+        return render (req, "agregar_avatar.html", {"miFormulario" : miFormulario})
+    
