@@ -364,6 +364,7 @@ def edita_perfil(req):
         miFormulario= UserEditForm(instance=req.user)
    
         return render(req, "editar_perfil.html", {"miFormulario": miFormulario})
+
     
 
 
@@ -371,15 +372,22 @@ def edita_perfil(req):
 
 def agregar_avatar(req):
 
+    user = req.user
     if req.method == 'POST':
 
         miFormulario = AvatarFormulario(req.POST, req.FILES)
+        print (req.POST)
+
+        avatar = Avatar(user = req.user, imagen = user.avatar)
+        avatar.save()
 
         if miFormulario.is_valid():
-            data = miFormulario.cleaned_data
+            
+            if miFormulario.cleaned_data.get('imagen'):
+                user.avatar.imagen = miFormulario.cleaned_data.get ('imagen')
+                user.avatar.save()
 
-            avatar = Avatar(user=req.user, imagen=data["imagen"])
-            avatar.save()
+                miFormulario.save()
 
             return render (req, "pantalla_inicio.html", {"message" : "Avatar creado correctamente"})
 
@@ -391,4 +399,31 @@ def agregar_avatar(req):
         miFormulario= AvatarFormulario()
 
         return render (req, "agregar_avatar.html", {"miFormulario" : miFormulario})
+    
+
+
+
+# def agregar_avatar(req):
+
+#     if req.method == 'POST':
+
+#         miFormulario = AvatarFormulario(req.POST, req.FILES)
+#         print (req.POST)
+
+#         if miFormulario.is_valid():
+#             data = miFormulario.cleaned_data
+
+#             avatar = Avatar(user = req.user, imagen = data["imagen"])
+#             avatar.save()
+
+#             return render (req, "pantalla_inicio.html", {"message" : "Avatar creado correctamente"})
+
+#         else:
+#             return render (req, "pantalla_inicio.html", {"message" : "Datos inválidos"})
+    
+#     else:
+
+#         miFormulario= AvatarFormulario()
+
+#         return render (req, "agregar_avatar.html", {"miFormulario" : miFormulario})
     

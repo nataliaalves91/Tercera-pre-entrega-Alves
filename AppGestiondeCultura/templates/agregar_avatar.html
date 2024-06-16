@@ -15,7 +15,8 @@
 <form
     action="{% url 'AgregarAvatar' %}"
     method ="post"
-    enctype="multipart/form-data">{% csrf_token %}
+    enctype="multipart/form-data">  
+    {% csrf_token %}
 
     {{mi.Formulario}}
 
