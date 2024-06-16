@@ -166,7 +166,7 @@ def danza_formulario (req):
 
 
 ##
-
+@staff_member_required
 def gastronomia_formulario (req):
 
     if req.method == 'POST':
@@ -210,18 +210,6 @@ def lista_cine (req):
     return render (req, "lista_cine.html", {"listado_cine" : listado_cine})
 
 
-#nueva
-
-# def eliminar_local (req, id):
-
-#     if req.method == 'POST':
-
-#         local_restaurante = Gastronomia.objects.get(id=id)
-#         local_restaurante.delete()
-
-#         locales_restaurantes = Gastronomia.objects.all()
-    
-#     return render (req, "gastronomia_list.html", {"locales_gastro": locales_restaurantes})
 
 
 
@@ -246,7 +234,7 @@ class GastronomiaCreate(CreateView):
 
     model = Gastronomia
     template_name = 'gastronomia_create.html'
-    fields = ["nombre", "localidad", "testeado"]
+    fields = ["nombre", "localidad", "testeado", "telefono", "apto_veganos"]
     success_url = "/gestion_cultural/"
 
 
@@ -364,66 +352,32 @@ def edita_perfil(req):
         miFormulario= UserEditForm(instance=req.user)
    
         return render(req, "editar_perfil.html", {"miFormulario": miFormulario})
-
     
 
-
-
-
+@staff_member_required
 def agregar_avatar(req):
 
-    user = req.user
+
     if req.method == 'POST':
 
         miFormulario = AvatarFormulario(req.POST, req.FILES)
-        print (req.POST)
 
-        avatar = Avatar(user = req.user, imagen = user.avatar)
-        avatar.save()
 
         if miFormulario.is_valid():
-            
-            if miFormulario.cleaned_data.get('imagen'):
-                user.avatar.imagen = miFormulario.cleaned_data.get ('imagen')
-                user.avatar.save()
 
-                miFormulario.save()
+            data = miFormulario.cleaned_data
 
-            return render (req, "pantalla_inicio.html", {"message" : "Avatar creado correctamente"})
+            avatar = Avatar(user = req.user, imagen = data['imagen'])
+            avatar.save()
+
+            return render (req, "creado_exito.html", {"message" : "Avatar creado correctamente"})
 
         else:
-            return render (req, "pantalla_inicio.html", {"message" : "Datos inválidos"})
+            return render (req, "pantalla_error.html", {"message" : "Datos inválidos"})
     
     else:
 
         miFormulario= AvatarFormulario()
 
         return render (req, "agregar_avatar.html", {"miFormulario" : miFormulario})
-    
-
-
-
-# def agregar_avatar(req):
-
-#     if req.method == 'POST':
-
-#         miFormulario = AvatarFormulario(req.POST, req.FILES)
-#         print (req.POST)
-
-#         if miFormulario.is_valid():
-#             data = miFormulario.cleaned_data
-
-#             avatar = Avatar(user = req.user, imagen = data["imagen"])
-#             avatar.save()
-
-#             return render (req, "pantalla_inicio.html", {"message" : "Avatar creado correctamente"})
-
-#         else:
-#             return render (req, "pantalla_inicio.html", {"message" : "Datos inválidos"})
-    
-#     else:
-
-#         miFormulario= AvatarFormulario()
-
-#         return render (req, "agregar_avatar.html", {"miFormulario" : miFormulario})
     

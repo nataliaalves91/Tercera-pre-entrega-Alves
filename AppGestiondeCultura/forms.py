@@ -9,13 +9,17 @@ class TeatroFormulario(forms.Form):
     título= forms.CharField()
     género= forms.CharField()
     edad_mínima= forms.IntegerField()
+    autor= forms.CharField (required=False)
+    fecha = forms.DateField()
 
 
 class CineFormulario(forms.Form):
 
     nombre= forms.CharField()
-    genero= forms.CharField()
+    genero= forms.CharField(label="Género")
     edad_minima= forms.IntegerField()
+    fecha = forms.DateField()
+    estreno = forms.BooleanField(required=False)
 
 
 class DanzaFormulario(forms.Form):
@@ -23,6 +27,8 @@ class DanzaFormulario(forms.Form):
     nombre= forms.CharField()
     edad= forms.IntegerField()
     fecha= forms.DateField()
+    clasico = forms.BooleanField(required=False)
+    independiente = forms.BooleanField(required=False)
 
 
 
@@ -30,7 +36,9 @@ class GastronomiaFormulario(forms.Form):
 
     nombre= forms.CharField()
     localidad = forms.CharField()
-    testeado = forms.BooleanField()
+    testeado = forms.BooleanField(required=False)
+    telefono = forms.IntegerField()
+    apto_veganos = forms.BooleanField(required=False)
 
 
 class UserEditForm(UserChangeForm):
@@ -46,6 +54,7 @@ class UserEditForm(UserChangeForm):
     first_name = forms.CharField(label= "Nombre:")
     last_name = forms.CharField(label = "Apellido: ")
     imagen = forms.ImageField(label= "Avatar", required=False)
+    
 
     class Meta:
         model=User  

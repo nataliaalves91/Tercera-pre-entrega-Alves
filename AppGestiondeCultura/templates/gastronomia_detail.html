@@ -19,7 +19,12 @@
 
     <p> Restaurante <strong>{{local_comida.nombre}} </strong></p>
     
-    <p>Dicho local se encuentra en la ciudad de {{local_comida.localidad}}</p>
+    <p>Dicho local se encuentra en la ciudad de {{local_comida.localidad}}, y es uno de los recomendados por nuestro equipo.
+        <p>¿Es apto para veganos? {{local_comida.apto_veganos}}</p>
+        <p>¿Ya lo probamos? {{local_comida.testeado}}</p>
+        <p>Si buscas más información, puedes contactarte directamente en el teléfono: {{local_comida.telefono}}</p>
+    
+    </p>
 
 
 {%endblock ContenidoVariable %}

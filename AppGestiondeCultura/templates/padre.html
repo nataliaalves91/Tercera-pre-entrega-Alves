@@ -39,17 +39,6 @@ Licence URI: https://www.os-templates.com/template-terms
       <ul class="nospace">
         <li><a href="{% url 'Login' %}" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
         <li><a href="{% url 'Registrar' %}" title="Sign Up"><i class="fas fa-edit"></i></a></li>
-        <li id="searchform">
-          <div>
-            <form action="#" method="post">
-              <fieldset>
-                <legend>Quick Search:</legend>
-                <input type="text" placeholder="Enter search term&hellip;">
-                <button type="submit"><i class="fas fa-search"></i></button>
-              </fieldset>
-            </form>
-          </div>
-        </li>
       </ul>
       <!-- ################################################################################################ -->
     </div>
@@ -62,26 +51,11 @@ Licence URI: https://www.os-templates.com/template-terms
     <header id="header" class="hoc clear">
       <div id="logo" class="fl_center"> 
         <!-- ################################################################################################ -->
-        <h1><a href="index.html">SomosCultura</a></h1>
+        <h1><a href="{% url 'Inicial' %}">Inicio</a></h1>
         <!-- ################################################################################################ -->
       </div>
 
-      <!-- <nav class="navbar navbar-light bg-light static-top">
-        <div class="container">
-            <div class="boton-inicio">
-                <a class="btn btn-primary" href="{% url 'Inicial' %}">Inicio</a>
-            </div>
-            <a class="navbar-brand" href="/gestion_cultural/lista_obras">Teatro</a>
-            <a class="navbar-brand" href="{% url 'FuncionesBaile' %}">Danza</a>
-            <a class="navbar-brand" href="{% url 'ListaCine' %}">Cine</a>
-            <a class="navbar-brand" href="{% url 'Restaurantes' %}">Gastronomía</a>
-        </div>
-    </nav> -->
     
-      <nav id="mainav" class="fl_center">
-                   <a class="boton-inicio"></a>
-          <br><a class="btn btn-primary" href="{% url 'Inicial' %}">Inicio</a><br>
-      </nav>
 
 
       <nav id="mainav" class="fl_right"> 
@@ -101,10 +75,11 @@ Licence URI: https://www.os-templates.com/template-terms
       {% if user.is_authenticated %}
 
        <p>¡Bienvenido/a, {{user.username}}!</p>
-{% comment %} 
+
         {% if req.user.avatar %}
           <img src="{{req.user.avatar.imagen.url}}" alt="15px" height="20px">
-        {% endif %} {% endcomment %}
+        {% endif %} 
+
         <form method= "post" action="{% url 'logout' %}">{% csrf_token %}
          <br><button class="btn btn-primary" type="submit"> Salir</button> </form> <br>
 
@@ -119,7 +94,8 @@ Licence URI: https://www.os-templates.com/template-terms
 
       <br>
 
-     
+        <form method= "post" action="{% url 'EditarPerfil' %}">{% csrf_token %}
+         <br><button class="btn btn-primary" type="submit"> Editar </button> </form> <br>
 
 
 
@@ -192,8 +168,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <hr class="btmspace-80">
     <!-- ################################################################################################ -->
     <section class="group">
-      <div class="one_half first"><img class="inspace-15 borderedbox" src="images/demo/474x356.png" alt=""></div>
-      <div class="one_half">
+
         <ul class="nospace group inspace-15">
           <li class="one_half first btmspace-50">
             <article>

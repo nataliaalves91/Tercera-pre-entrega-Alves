@@ -24,26 +24,45 @@
     <p>Pero, y principalmente, nuestro <strong> hoy </strong>.</p>
     <p>En este espacio encontrarás el detalle de las proyecciones que hemos tenido el placer de tener en nuestras salas.</p>
 
+  
+    <ul>
+
+        {% for lista_cine in listado_cine %} 
+
+            <li> <strong> {{lista_cine.nombre}} </strong>, apta a partir de {{lista_cine.edad_minima}} años.  <div> Género: {{lista_cine.genero}} </div></li>
+
+        {% endfor %}
+
+
+    </ul>
+
+    Y también puedes...:
     <p></p>
+                        <a href="{% url 'CineFormulario' %}"> Añadir filmación </a>
+
+
+
+
+
+
+
+
     
+
+
+
+
+
+<!-- 
     <h5> Listado de todas las proyecciones de nuestras salas:</h5>
     
             <p></p>
-            <ul>
 
-                {% for lista_cine in listado_cine %} 
-
-                    <li> <strong> {{lista_cine.nombre}} </strong>, apta a partir de {{lista_cine.edad_minima}} años.  <div> Género: {{lista_cine.genero}} </div></li>
-
-                {% endfor %}
-
-
-            </ul>
 
     <h5> Y también puedes...</h5>
 
         <p></p>
-        <a href="{% url 'CineFormulario' %}"> Añadir obra</a>
+        <a href="{% url 'CineFormulario' %}"> Añadir obra</a> -->
 
     
     
