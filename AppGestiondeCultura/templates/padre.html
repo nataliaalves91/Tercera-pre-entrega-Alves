@@ -66,6 +66,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <li class="active"><a href="{% url 'FuncionesBaile' %}">Danza</a></li>
           <li class="active"><a href="{% url 'ListaCine' %}">Cine</a></li>
           <li class="active"><a href="{% url 'Restaurantes' %}">Gastronomía</a></li>
+          <a href="{% url 'AboutMe' %}"> Acerca de mí </a>
 
         </ul>
       </nav>
@@ -82,20 +83,21 @@ Licence URI: https://www.os-templates.com/template-terms
 
         <form method= "post" action="{% url 'logout' %}">{% csrf_token %}
          <br><button class="btn btn-primary" type="submit"> Salir</button> </form> <br>
-
+        <form method= "post" action="{% url 'EditarPerfil' %}">{% csrf_token %}
+          <br><button class="btn btn-primary" type="submit"> Editar </button> </form> <br>
          
 
 
       {% else %}
 
-       <a class="btn btn-primary" href="{% url 'Login' %}">Ingresar</a>
+       <a class="btn btn-primary" href="{% url 'Login' %}">Ingresar</a><flex></flex>
 
       {% endif %}
 
       <br>
-
+<!-- 
         <form method= "post" action="{% url 'EditarPerfil' %}">{% csrf_token %}
-         <br><button class="btn btn-primary" type="submit"> Editar </button> </form> <br>
+         <br><button class="btn btn-primary" type="submit"> Editar </button> </form> <br> -->
 
 
 

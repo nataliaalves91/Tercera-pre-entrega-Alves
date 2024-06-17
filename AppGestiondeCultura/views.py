@@ -37,6 +37,9 @@ def inicio (req):
     except:
         return render(req, "pantalla_inicio.html")
 
+def about_me (req):
+
+    return render(req, "aboutme.html", {})
 
 def funcion_danza (req):
 
@@ -59,18 +62,16 @@ def degustaciones (req):
 
 def teatro_formulario (req):
 
-    print ('method: ', req.method)
-    print ('POST: ', req.POST)
 
     if req.method == 'POST':
 
-        miFormulario= TeatroFormulario(req.POST)
+        miFormulario= TeatroFormulario(req.POST, req.FILES)
 
         if miFormulario.is_valid():
 
             data = miFormulario.cleaned_data
             
-            nueva_obra = Teatro(nombre=data['título'], genero=data['género'], edad=data['edad_mínima'])
+            nueva_obra = Teatro(nombre=data['título'], genero=data['género'], edad=data['edad_mínima'], imagen=data['imagen'])
             nueva_obra.save()
 
             return render(req, "creado_exito.html", {})
@@ -166,7 +167,7 @@ def danza_formulario (req):
 
 
 ##
-@staff_member_required
+
 def gastronomia_formulario (req):
 
     if req.method == 'POST':
@@ -245,6 +246,7 @@ class GastronomiaUpdate (LoginRequiredMixin, UpdateView):
     fields = ('__all__')
     success_url = "/gestion_cultural/lista-gastronomia/"
     context_object_name = 'detalle_gastronomia'
+
 
 
 class GastronomiaDelete(LoginRequiredMixin, DeleteView):
@@ -369,6 +371,8 @@ def agregar_avatar(req):
 
             avatar = Avatar(user = req.user, imagen = data['imagen'])
             avatar.save()
+            
+            
 
             return render (req, "creado_exito.html", {"message" : "Avatar creado correctamente"})
 

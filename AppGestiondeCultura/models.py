@@ -10,6 +10,7 @@ class Teatro (models.Model):
     edad = models.IntegerField ()
     autor= models.CharField (max_length=35)
     fecha = models.DateField(null=True)
+    imagen = models.ImageField(upload_to='avatares', blank=True, null=True)
 
     def __str__ (self):
         return f'{self.nombre}, fecha {self.fecha}'

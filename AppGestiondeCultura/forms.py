@@ -11,6 +11,7 @@ class TeatroFormulario(forms.Form):
     edad_mínima= forms.IntegerField()
     autor= forms.CharField (required=False)
     fecha = forms.DateField()
+    imagen = forms.ImageField(label= "Avatar", required=False)
 
 
 class CineFormulario(forms.Form):
